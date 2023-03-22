@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-backend
+  labels:
+    app: hello-world-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-world-backend
+  template:
+    metadata:
+      labels:
+        app: hello-world-backend
+    spec:
+      containers:
+        - name: hello-world-backend
+          image: node:14
+          command: ["node", "index.js"]
+          ports:
+            - name: http
+              containerPort: 4000
